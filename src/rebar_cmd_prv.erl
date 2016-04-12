@@ -34,7 +34,13 @@ do(State) ->
   case lists:keyfind(list_to_atom(CmdName), 1, Config) of
     {_, Command} ->
       rebar_api:debug("Running ~p with command ~p.~n", [[CmdName], [Command]]),
-      {ok, State};
+      case rebar_utils:sh(Command) of
+        {ok, Return} ->
+          rebar_api:info("~p", Return),
+          {ok, State};
+        Error ->
+          {error, {?MODULE, Error}}
+      end;
     false ->
       io:format("Did not find command"),
       {error, {?MODULE, no_command}}
