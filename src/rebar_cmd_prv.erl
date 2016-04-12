@@ -29,7 +29,21 @@ init(State) ->
 
 -spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, string()}.
 do(State) ->
-    {ok, State}.
+  Config = rebar_state:get(State, cmd, []),
+  {[{task, CmdName}], _} = rebar_state:command_parsed_args(State),
+  case lists:keyfind(list_to_atom(CmdName), 1, Config) of
+    {_, Command} ->
+      rebar_api:debug("Running ~p with command ~p.~n", [[CmdName], [Command]]),
+      case rebar_utils:sh(Command, []) of
+        {ok, Return} ->
+          rebar_api:info("~p", [Return]),
+          {ok, State};
+        Error ->
+          {error, {?MODULE, Error}}
+      end;
+    false ->
+      {error, {?MODULE, no_command}}
+  end.
 
 -spec format_error(any()) ->  iolist().
 format_error(Reason) ->
