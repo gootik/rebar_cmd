@@ -29,7 +29,7 @@ init(State) ->
 
 -spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, string()}.
 do(State) ->
-  Config = rebar_state:get(State, cmd, []),
+  Config = rebar_state:get(State, commands, []),
   {[{task, CmdName}], _} = rebar_state:command_parsed_args(State),
   case lists:keyfind(list_to_atom(CmdName), 1, Config) of
     {_, Command} ->
