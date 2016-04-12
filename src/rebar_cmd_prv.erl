@@ -30,8 +30,9 @@ init(State) ->
 -spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, string()}.
 do(State) ->
   Config = rebar_state:get(State, cmd, []),
-  [Command | Args] = [ rebar_state:command_args(State) ],
-  lists:keyfind("test", 1, Config),
+  [CmdName | Args] = [ rebar_state:command_args(State) ],
+  Command = lists:keyfind("test", 1, Config),
+  io:format("~p~n", Command),
   {ok, State}.
 
 -spec format_error(any()) ->  iolist().
