@@ -33,7 +33,7 @@ do(State) ->
   [CmdName | Args] = [ rebar_state:command_args(State) ],
   case lists:keyfind("test", 1, Config) of
     {_, Command} ->
-      io:format("~p~n", Command),
+      io:format("~p~n", [CmdName | Command]),
       {ok, State};
     false ->
       io:format("Did not find command"),
