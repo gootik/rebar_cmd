@@ -31,9 +31,14 @@ init(State) ->
 do(State) ->
   Config = rebar_state:get(State, cmd, []),
   [CmdName | Args] = [ rebar_state:command_args(State) ],
-  Command = lists:keyfind("test", 1, Config),
-  io:format("~p~n", [Command]),
-  {ok, State}.
+  case lists:keyfind("test", 1, Config) of
+    {_, Command} ->
+      io:format("~p~n", Command),
+      {ok, State};
+    false ->
+      io:format("Did not find command"),
+      {error, {?MODULE, no_command}}
+  end.
 
 -spec format_error(any()) ->  iolist().
 format_error(Reason) ->
