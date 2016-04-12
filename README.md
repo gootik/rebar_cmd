@@ -24,7 +24,7 @@ Add the plugin to your rebar config:
 Then just call your plugin directly in an existing application:
 
 
-    $ rebar3 rebar_cmd docker_up
+    $ rebar3 cmd docker_up
     ===> Fetching rebar_cmd
     ===> Compiling rebar_cmd
     <Plugin Output>
