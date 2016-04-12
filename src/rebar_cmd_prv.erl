@@ -36,7 +36,7 @@ do(State) ->
       rebar_api:debug("Running ~p with command ~p.~n", [[CmdName], [Command]]),
       case rebar_utils:sh(Command, []) of
         {ok, Return} ->
-          rebar_api:info("~p", Return),
+          rebar_api:info("~p", [Return]),
           {ok, State};
         Error ->
           {error, {?MODULE, Error}}
