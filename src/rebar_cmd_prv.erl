@@ -32,7 +32,7 @@ do(State) ->
   Config = rebar_state:get(State, cmd, []),
   Args = rebar_state:command_args(State),
   io:format("~p~n", Config),
-  io:format("~p~n", Args),
+  rebar_api:info("~p~n", Args),
   {ok, State}.
 
 -spec format_error(any()) ->  iolist().
