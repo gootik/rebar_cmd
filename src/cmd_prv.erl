@@ -1,4 +1,4 @@
--module(rebar_cmd_prv).
+-module(cmd_prv).
 
 -export([
          init/1,
