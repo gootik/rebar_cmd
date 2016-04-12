@@ -30,10 +30,11 @@ init(State) ->
 -spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, string()}.
 do(State) ->
   Config = rebar_state:get(State, cmd, []),
-  [CmdName | Args] = [ rebar_state:command_args(State) ],
+  {Opts, _} = rebar_state:command_parsed_args(State),
   case lists:keyfind("test", 1, Config) of
     {_, Command} ->
-      io:format("~p~n", [CmdName | Command]),
+      io:format("~p~n", [ Opts ]),
+      io:format("~p~n", [ Command ]),
       {ok, State};
     false ->
       io:format("Did not find command"),
