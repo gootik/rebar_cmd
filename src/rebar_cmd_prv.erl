@@ -42,7 +42,6 @@ do(State) ->
           {error, {?MODULE, Error}}
       end;
     false ->
-      io:format("Did not find command"),
       {error, {?MODULE, no_command}}
   end.
 
