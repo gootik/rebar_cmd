@@ -31,7 +31,7 @@ init(State) ->
 do(State) ->
   Config = rebar_state:get(State, cmd, []),
   {[{task, CmdName}], _} = rebar_state:command_parsed_args(State),
-  case lists:keyfind("test", 1, Config) of
+  case lists:keyfind(list_to_atom(CmdName), 1, Config) of
     {_, Command} ->
       io:format("~p~n", [ CmdName ]),
       io:format("~p~n", [ Command ]),
