@@ -33,7 +33,7 @@ do(State) ->
   {[{task, CmdName}], _} = rebar_state:command_parsed_args(State),
   case lists:keyfind(list_to_atom(CmdName), 1, Config) of
     {_, Command} ->
-      rebar_api:debug("Running ~p with command ~p.~n", [CmdName], [Command]),
+      rebar_api:debug("Running ~p with command ~p.~n", [[CmdName], [Command]]),
       {ok, State};
     false ->
       io:format("Did not find command"),
