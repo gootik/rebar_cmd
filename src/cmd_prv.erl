@@ -6,7 +6,7 @@
          format_error/1
         ]).
 
--define(PROVIDER, cmd).
+-define(PROVIDER, bigo).
 -define(DEPS, [app_discovery]).
 
 %% ===================================================================
