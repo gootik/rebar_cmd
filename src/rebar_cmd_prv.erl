@@ -30,10 +30,10 @@ init(State) ->
 -spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, string()}.
 do(State) ->
   Config = rebar_state:get(State, cmd, []),
-  {Opts, _} = rebar_state:command_parsed_args(State),
+  {{task, CmdName}, _} = rebar_state:command_parsed_args(State),
   case lists:keyfind("test", 1, Config) of
     {_, Command} ->
-      io:format("~p~n", [ Opts ]),
+      io:format("~p~n", [ CmdName ]),
       io:format("~p~n", [ Command ]),
       {ok, State};
     false ->
