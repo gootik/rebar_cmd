@@ -29,7 +29,10 @@ init(State) ->
 
 -spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, string()}.
 do(State) ->
-    {ok, State}.
+  Config = rebar_state:get(State, cmd, []),
+  io:format("~p~n", Config),
+
+  {ok, State}.
 
 -spec format_error(any()) ->  iolist().
 format_error(Reason) ->
