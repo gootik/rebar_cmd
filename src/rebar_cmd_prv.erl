@@ -6,7 +6,7 @@
          format_error/1
         ]).
 
--define(PROVIDER, rebar_cmd).
+-define(PROVIDER, cmd).
 -define(DEPS, [app_discovery]).
 
 %% ===================================================================
