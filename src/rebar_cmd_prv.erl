@@ -31,7 +31,7 @@ init(State) ->
 do(State) ->
   Config = rebar_state:get(State, cmd, []),
   io:format("~p~n", Config),
-
+  io:format("~p~n", rebar_state:command_parsed_args(State)),
   {ok, State}.
 
 -spec format_error(any()) ->  iolist().
