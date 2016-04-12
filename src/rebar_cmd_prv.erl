@@ -6,7 +6,7 @@
          format_error/1
         ]).
 
--define(PROVIDER, bigo).
+-define(PROVIDER, cmd).
 -define(DEPS, [app_discovery]).
 
 %% ===================================================================
@@ -22,7 +22,7 @@ init(State) ->
             {example, "rebar3 cmd COMMAND"},
             {opts, []},
             {short_desc, "A rebar plugin for running custom commands"},
-            {desc, "A rebar plugin for runnins custom commands."}
+            {desc, "A rebar plugin for running custom commands."}
     ]),
     {ok, rebar_state:add_provider(State, Provider)}.
 

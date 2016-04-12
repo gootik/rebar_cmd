@@ -1,4 +1,4 @@
-{application, cmd,
+{application, rebar_cmd,
  [{description, "Run custom shell commands as rebar3 tasks"},
   {vsn, "0.1.0"},
   {registered, []},
