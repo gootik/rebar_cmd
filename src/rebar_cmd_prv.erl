@@ -38,7 +38,7 @@ do(State) ->
       case rebar_utils:sh(Command, []) of
         {ok, Return} ->
           FormattedReturn = re:replace(Return, "\\n","~n", [global, {return, list}]),
-          rebar_api:console("~p", [FormattedReturn]),
+          rebar_api:console(FormattedReturn),
           {ok, State};
         Error ->
           {error, {?MODULE, Error}}
