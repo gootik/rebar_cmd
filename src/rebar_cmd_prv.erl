@@ -37,7 +37,7 @@ do(State) ->
       rebar_api:debug("Running ~p with command ~p.~n", [[CmdName], [Command]]),
       case rebar_utils:sh(Command, []) of
         {ok, Return} ->
-          FormattedReturn = re:replace(Return, "\\n","~n", [global, {return, list}])
+          FormattedReturn = re:replace(Return, "\\n","~n", [global, {return, list}]),
           rebar_api:console("~p", [FormattedReturn]),
           {ok, State};
         Error ->
