@@ -19,7 +19,7 @@ init(State) ->
             {module, ?MODULE},
             {bare, true},
             {deps, ?DEPS},
-            {example, "rebar3 cmd COMMAND"},
+            {example, "rebar3 rebar_cmd COMMAND"},
             {opts, []},
             {short_desc, "A rebar plugin for running custom commands"},
             {desc, "A rebar plugin for running custom commands."}
@@ -30,7 +30,8 @@ init(State) ->
 -spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, string()}.
 do(State) ->
   Config = rebar_state:get(State, commands, []),
-  {[{task, CmdName}], _} = rebar_state:command_parsed_args(State),
+  {ArgsPropList, _} = rebar_state:command_parsed_args(State),
+  {task, CmdName} = proplists:lookup(task, ArgsPropList),
   case lists:keyfind(list_to_atom(CmdName), 1, Config) of
     {_, Command} ->
       rebar_api:debug("Running ~p with command ~p.~n", [[CmdName], [Command]]),
