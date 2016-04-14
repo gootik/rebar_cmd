@@ -1,7 +1,6 @@
 rebar_cmd
 =====
-
-A rebar plugin
+Run custom shell commands as rebar3 tasks.
 
 Build
 -----
