@@ -19,7 +19,7 @@ This is a very simple and straight forward plugin. Simply tell rebar a list of c
 Add the plugin to your rebar config:
 ```Erlang
     {plugins, [
-        { rebar_cmd, ".*", {git, "git@github.com:shezarkhani/rebar_cmd.git", {tag, "0.2.1"}}}
+      {rebar_cmd, "0.2.1"}
     ]}.
 
     {commands, [
