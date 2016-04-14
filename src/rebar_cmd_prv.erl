@@ -19,7 +19,7 @@ init(State) ->
             {module, ?MODULE},
             {bare, true},
             {deps, ?DEPS},
-            {example, "rebar3 rebar_cmd COMMAND"},
+            {example, "rebar3 cmd COMMAND"},
             {opts, []},
             {short_desc, "A rebar plugin for running custom commands"},
             {desc, "A rebar plugin for running custom commands."}
