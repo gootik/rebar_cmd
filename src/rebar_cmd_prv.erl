@@ -51,7 +51,7 @@ format_error(Reason) ->
 %% Private API
 %% ===================================================================
 run_shell(Command) ->
-  run_shell(Command, 5000).
+  run_shell(Command, 15000).
 
 run_shell(Command, Timeout) ->
   Port = erlang:open_port({spawn, Command}, [exit_status]),
