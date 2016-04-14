@@ -38,7 +38,3 @@ Then you just have to call your plugin directly in an existing application:
     <Command Output will be here>
 
 
-### Build from source
-
-    $ rebar3 compile
-
