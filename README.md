@@ -10,7 +10,7 @@ Wether it is bringing docker containers up, tagging a new release on git or dele
 
 ### How it works
 
-This is a very simple and straight forward plugin. Simply tell rebar a list of commands to execute (just like linux aliases) and access them via `rebar3 cmd <you command>`
+This is a very simple and straight forward plugin. Simply tell rebar a list of commands to execute (just like linux aliases) and access rhem via `rebar3 cmd <your command>`
 
 
 ### Usage
