@@ -13,7 +13,7 @@ Use
 Add the plugin to your rebar config:
 ```Erlang
     {plugins, [
-        { rebar_cmd, ".*", {git, "git@github.com:shezarkhani/rebar_cmd.git", {tag, "0.2.0"}}}
+        { rebar_cmd, ".*", {git, "git@github.com:shezarkhani/rebar_cmd.git", {tag, "0.2.1"}}}
     ]}.
 
     {commands, [
