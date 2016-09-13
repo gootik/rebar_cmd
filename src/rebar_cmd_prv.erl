@@ -60,11 +60,11 @@ run_shell(Command, Timeout) ->
 shell_loop(Port, Data, Timeout) ->
   receive
     {Port, {data, MoreData}} ->
-      rebar_api:console(MoreData, []),
-      shell_loop(Port, MoreData++Data, Timeout);
+      io:format(MoreData),
+      shell_loop(Port, MoreData ++ Data, Timeout);
     {Port, {exit_status, 0}} -> {ok, Data};
     {Port, {exit_status, Error}} -> throw({sh_fail, Error})
   after Timeout ->
-    throw(Timeout)
+    throw(timeout)
   end.
 
