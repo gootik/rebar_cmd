@@ -40,7 +40,7 @@ do(State) ->
         {error, Error} -> {error, Error}
       end;
     false ->
-      {error, {?MODULE, no_command}}
+      {error, "Command " ++ CmdName ++ " is unknown. Check your configuration."}
   end.
 
 -spec format_error(any()) ->  iolist().
