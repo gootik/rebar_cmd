@@ -37,7 +37,7 @@ do(State) ->
       rebar_api:debug("Running ~p with command ~p.~n", [[CmdName], [Command]]),
       case run_shell({CmdName, Command}) of
         {ok, _} -> {ok, State};
-        Error -> {error, {?MODULE, Error}}
+        {error, Error} -> {error, Error}
       end;
     false ->
       {error, {?MODULE, no_command}}
