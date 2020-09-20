@@ -35,7 +35,7 @@ do(State) ->
   case lists:keyfind(list_to_atom(CmdName), 1, Config) of
     {_, Command} ->
       rebar_api:debug("Running ~p with command ~p.~n", [[CmdName], [Command]]),
-      case run_shell(Command) of
+      case run_shell({CmdName, Command}) of
         {ok, _} -> {ok, State};
         Error -> {error, {?MODULE, Error}}
       end;
@@ -50,21 +50,26 @@ format_error(Reason) ->
 %% ===================================================================
 %% Private API
 %% ===================================================================
-run_shell(Command) ->
-  run_shell(Command, 15000).
+run_shell({CmdName, Command}) ->
+  run_shell({CmdName, Command}, 15000).
 
-run_shell(Command, Timeout) ->
+run_shell({CmdName, Command}, Timeout) ->
   Port = erlang:open_port({spawn, Command}, [exit_status]),
-  shell_loop(Port, [], Timeout).
+  shell_loop(Port, [], Timeout, {CmdName, Command}).
 
-shell_loop(Port, Data, Timeout) ->
+shell_loop(Port, Data, Timeout, {CmdName, Command}) ->
   receive
     {Port, {data, MoreData}} ->
       io:format(MoreData),
-      shell_loop(Port, MoreData ++ Data, Timeout);
+      shell_loop(Port, MoreData ++ Data, Timeout, {CmdName, Command});
     {Port, {exit_status, 0}} -> {ok, Data};
-    {Port, {exit_status, Error}} -> throw({sh_fail, Error})
+    {Port, {exit_status, Error}} ->
+        Cmd = lists:flatten(Command),
+        {error, "Command " ++ CmdName ++ " (" ++ Cmd ++ ") failed with exit status "
+                ++ integer_to_list(Error) ++ "."}
   after Timeout ->
-    throw(timeout)
+        Cmd = lists:flatten(Command),
+        {error, "Command " ++ CmdName ++ " (" ++ Cmd ++ ") timed out after "
+                ++ integer_to_list(Timeout) ++ " ms."}
   end.
 
