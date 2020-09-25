@@ -63,7 +63,6 @@ run_shell({CmdName, Command}, Timeout) ->
 shell_loop(Port, Data, Timeout, {CmdName, Command}) ->
     receive
         {Port, {data, MoreData}} ->
-            io:format(MoreData),
             shell_loop(Port, MoreData ++ Data, Timeout, {CmdName, Command});
         {Port, {exit_status, 0}} ->
             {ok, Data};
