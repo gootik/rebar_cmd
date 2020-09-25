@@ -2,7 +2,7 @@
  [{description, "Run custom shell commands with rebar3 cmd <command>"},
   {vsn, git},
   {registered, []},
-  {application,
+  {applications,
    [kernel,
     stdlib
    ]},
