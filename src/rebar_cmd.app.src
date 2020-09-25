@@ -11,5 +11,5 @@
 
   {maintainers, ["Sasan Hezarkhani", "Matheus Mendes", "Ahmad Mokhtar"]},
   {licenses, ["MIT"]},
-  {links, [{"Github", "https://github.com/shezarkhani/rebar_cmd"}]}
+  {links, [{"Github", "https://github.com/gootik/rebar_cmd"}]}
  ]}.
