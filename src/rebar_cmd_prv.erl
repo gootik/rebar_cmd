@@ -38,10 +38,10 @@ init(State) ->
         {module, ?MODULE},
         {bare, true},
         {deps, ?DEPS},
-        {example, "rebar3 cmd COMMAND"},
+        {example, "rebar3 cmd <command>"},
         {opts, []},
-        {short_desc, "A rebar plugin for running custom commands"},
-        {desc, "A rebar plugin for running custom commands."}
+        {short_desc, "A rebar3 plugin to run custom shell commands 'cmd <command>'."},
+        {desc, "A rebar3 plugin to run custom shell commands 'cmd <command>'"}
     ]),
     {ok, rebar_state:add_provider(State, Provider)}.
 
