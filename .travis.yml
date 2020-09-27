@@ -14,3 +14,4 @@ script:
   - rebar3 lint
   - rebar3 fmt
   - rebar3 ct
+  - rebar3 cover
