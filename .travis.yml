@@ -12,4 +12,5 @@ script:
   - rebar3 xref
   - rebar3 dialyzer
   - rebar3 lint
+  - rebar3 fmt
   - rebar3 ct
