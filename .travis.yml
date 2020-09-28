@@ -12,6 +12,6 @@ script:
   - rebar3 as test xref
   - rebar3 as test dialyzer
   - rebar3 lint
-  - rebar3 fmt
+  #- rebar3 fmt
   - rebar3 ct
   - rebar3 cover

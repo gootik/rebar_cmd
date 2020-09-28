@@ -8,7 +8,12 @@
 
 -ignore_xref([
     do/1,
-    format_error/1
+    format_error/1,
+    {rebar_api, debug, 2},
+    {rebar_api, error, 2},
+    {rebar_api, warn, 2},
+    {rebar_state, add_provider, 2},
+    {providers, create, 1}
 ]).
 
 -define(PROVIDER, cmd).
