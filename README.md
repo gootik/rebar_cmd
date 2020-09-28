@@ -1,40 +1,56 @@
-rebar_cmd
-=====
-Run custom shell commands as rebar3 tasks.
+# rebar_cmd
 
-### Purpose
+Run custom shell commands with `rebar3 cmd <command>`.
 
-The goal of this plugin is to allow additional commands to rebar3 so that one can use it to manage everything in an Erlang project.
+## Purpose
 
-Wether it is bringing docker containers up, tagging a new release on git or deleting log files, we should be able to use the same build tool for all of that.
+The goal of this plugin is to allow `rebar3` to run additional commands, so
+that one can use it solely to manage everything in an Erlang project.
 
-### How it works
+Whether it is bringing Docker containers up, tagging a new Git release or
+deleting log files, you should be able to use a single build tool.
 
-This is a very simple and straight forward plugin. Simply tell rebar a list of commands to execute (just like linux aliases) and access them via `rebar3 cmd <your command>`
+## How it works
 
+This is a very simple and straightforward plugin. Simply describe your
+command in `rebar.config` and execute (just like you would Linux aliases)
+with `rebar3 cmd <command>`.
 
-### Usage
+## Usage
 
+Add the plugin to your `rebar.config`:
 
-Add the plugin to your rebar.config:
 ```erlang
     {plugins, [
-      {rebar_cmd, "0.2.6"}
+        {rebar_cmd, "0.2.6"}
     ]}.
 
     {commands, [
-        { docker_up, "docker-compose up -d" },
-        { sync, "git fetch upstream && git merge upstream/master" }
+        {docker_up, "docker-compose up -d"},
+        {sync, "git fetch upstream && git merge upstream/master"}
     ]}.
 ```
-In this case, we've added a command to bring our docker containers up, and another to sync the git repository with the remote master.
 
-Then you just have to call your plugin directly in an existing application:
+The example above shows you how to describe a command to bring your
+Docker containers up, as well as another one to sync a Git repository
+with remote master.
 
-```
-$ rebar3 cmd docker_up
-===> Fetching rebar_cmd
+Some options are available, as described below:
+
+* `[{timeout, <Ms>}]` (defaults to `15000`)
+* `[{verbose, <Verbose>}]` (defaults to `false`)
+
+e.g. you could change the previous `docker_up` command to have it fail
+after 5s with `{docker_up, "docker-compose up -d", [{timeout, 5000}]},`.
+You could also get more info from the shell for the above command
+`sync` with
+`{sync, "git fetch upstream && git merge upstream/master", [{verbose, true}]}`
+
+Check it out:
+
+```erlang
+$ rebar3 cmd sync
+===> Analyzing applications...
 ===> Compiling rebar_cmd
-<Command Output will be here>
+===> Command sync resulted in: "Already up to date."
 ```
-
