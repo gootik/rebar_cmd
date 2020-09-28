@@ -1,4 +1,4 @@
-# rebar_cmd
+# rebar_cmd [![Build Status](https://travis-ci.org/gootik/rebar_cmd.svg?branch=master)](https://travis-ci.org/gootik/hakicache) [![Hex.pm](https://img.shields.io/hexpm/v/rebar_cmd.svg)](https://hex.pm/packages/rebar_cmd)
 
 Run custom shell commands with `rebar3 cmd <command>`.
 
