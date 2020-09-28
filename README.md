@@ -48,7 +48,7 @@ You could also get more info from the shell for the above command
 
 Check it out:
 
-```erlang
+```bash
 $ rebar3 cmd sync
 ===> Analyzing applications...
 ===> Compiling rebar_cmd
