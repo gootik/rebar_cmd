@@ -98,8 +98,7 @@ exec(CmdName, Cmd, Opts) ->
         {Ref, Result} ->
             {ok, {CmdName, Result}};
         {'DOWN', MonitorRef, _Type, _Object, Info} ->
-            rebar_api:error("Command ~s died unexpectedly with ~p.", [CmdName, Info]),
-            {ok, {CmdName, died}}
+            {ok, {{CmdName, Info}, died}}
     after Timeout ->
         exit(MonitorPid, kill),
         TimeOutS = integer_to_list(Timeout),
@@ -108,7 +107,8 @@ exec(CmdName, Cmd, Opts) ->
 
 handle_cmd({error, Error}, _Opts, _State) ->
     {error, Error};
-handle_cmd({ok, {_CmdName, died}}, _Opts, State) ->
+handle_cmd({ok, {{CmdName, Info}, died}}, _Opts, State) ->
+    rebar_api:error("Command ~s died unexpectedly with ~p.", [CmdName, Info]),
     {ok, State};
 handle_cmd({ok, {CmdName, Result}}, Opts, State) ->
     case get_opt(verbose, Opts, CmdName) of
