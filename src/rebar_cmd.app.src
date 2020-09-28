@@ -1,6 +1,6 @@
 {application, rebar_cmd,
  [{description, "Run custom shell commands with rebar3 cmd <command>"},
-  {vsn, "0.2.6"},
+  {vsn, "0.3.0"},
   {registered, []},
   {applications,
    [kernel,
@@ -9,7 +9,7 @@
   {env,[]},
   {modules, []},
 
-  {maintainers, ["Sasan Hezarkhani", "Matheus Mendes", "Ahmad Mokhtar"]},
+  {maintainers, ["Sasan Hezarkhani", "Matheus Mendes", "Ahmad Mokhtar", "Paulo F. Oliveira"]},
   {licenses, ["MIT"]},
   {links, [{"Github", "https://github.com/gootik/rebar_cmd"}]}
  ]}.
