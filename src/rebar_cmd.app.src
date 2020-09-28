@@ -1,6 +1,6 @@
 {application, rebar_cmd,
  [{description, "Run custom shell commands with rebar3 cmd <command>"},
-  {vsn, git},
+  {vsn, "0.2.6"},
   {registered, []},
   {applications,
    [kernel,
