@@ -12,6 +12,7 @@
     {rebar_api, debug, 2},
     {rebar_api, error, 2},
     {rebar_api, warn, 2},
+    {rebar_api, console, 2},
     {rebar_state, add_provider, 2},
     {providers, create, 1}
 ]).
@@ -115,12 +116,15 @@ handle_cmd({error, Error}, _Opts, _State) ->
 handle_cmd({ok, {{CmdName, Info}, died}}, _Opts, State) ->
     rebar_api:error("Command ~s died unexpectedly with ~p.", [CmdName, Info]),
     {ok, State};
-handle_cmd({ok, {CmdName, Result}}, Opts, State) ->
+handle_cmd({ok, {CmdName, RawResult}}, Opts, State) ->
+    Result = string:trim(RawResult),
     case get_opt(verbose, Opts, CmdName) of
         true ->
-            rebar_api:warn("Command ~s resulted in: ~p", [CmdName, Result]);
+            rebar_api:debug("Command ~s finished", [CmdName]),
+            rebar_api:console("~ts", [Result]);
         false ->
-            rebar_api:debug("Command ~s resulted in: ~p", [CmdName, Result])
+            rebar_api:debug("Command ~s finished", [CmdName]),
+            rebar_api:debug("Command ~s result: ~ts", [CmdName, Result])
     end,
     {ok, State}.
 
